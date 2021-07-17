@@ -79,7 +79,12 @@ def search(search_terms, df, df2):
                         print (hits[y])
                         hit = int(hits[y].replace("[", "").replace("]", "").split(",")[0])
                         if sentences[hit] not in all_hits:
-                            all_hits.append(sentences[hit])
+                            term_hit = False
+                            for term in search_term:
+                                if term in sentences[hit]:
+                                    term_hit=True
+                            if term_hit= False:
+                                all_hits.append(sentences[hit])
                     y=y+1
 
 
