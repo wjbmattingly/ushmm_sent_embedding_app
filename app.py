@@ -61,8 +61,12 @@ def search(search_terms, df, df2):
     for sentence in sentences:
         new = sentence.translate(str.maketrans('', '', string.punctuation))
         new_words = new.split()
+        final_news = []
+        for word in new_words:
+            word = word.lower()
+            final_news.append(word)
         found = False
-        for term in search_terms:
+        for term in final_news:
             if term in new_words:
                 if sentence not in matches:
                     matches.append(sentence)
@@ -89,7 +93,7 @@ def search(search_terms, df, df2):
         x=x+1
     combined = matches+all_hits
     combined = list(set(combined))
-    return (combined)
+    return (matches, all_hits)
 
 download_files()
 sentence_data = cache_df()
@@ -113,5 +117,8 @@ if search_button:
     for word in words:
         clean_searches.append(word.strip())
 
-    results = search(clean_searches, sentence_data, matches)
-    st.write(results)
+    matches, all_hits = search(clean_searches, sentence_data, matches)
+    st.write("Here is a list of matches that contain one of your search words:")
+    st.write(matches)
+    st.write("Here is a list of items that matched based on similarity:")
+    st.write(all_hits)
