@@ -88,10 +88,10 @@ def search(search_terms, df, df2):
     combined = list(set(combined))
     return (combined)
 
-
+download_files()
 sentence_data = cache_df()
 matches = cache_paras()
-download_files()
+
 
 st.title("USHMM Oral Testimony Sentence Embedding Search")
 
