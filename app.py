@@ -83,7 +83,7 @@ def search(search_terms, df, df2):
                             for term in search_term:
                                 if term in sentences[hit]:
                                     term_hit=True
-                            if term_hit= False:
+                            if term_hit== False:
                                 all_hits.append(sentences[hit])
                     y=y+1
 
