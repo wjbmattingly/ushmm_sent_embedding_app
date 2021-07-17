@@ -66,8 +66,8 @@ def search(search_terms, df, df2):
             word = word.lower()
             final_news.append(word)
         found = False
-        for term in final_news:
-            if term in new_words:
+        for term in search_terms:
+            if term in final_news:
                 if sentence not in matches:
                     matches.append(sentence)
                     found = True
