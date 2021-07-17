@@ -3,6 +3,7 @@ import json
 import pandas as pd
 from google_drive_downloader import GoogleDriveDownloader as gdd
 import os
+import string
 
 def load_data(file):
     with open (file, "r", encoding="utf-8") as f:
@@ -58,9 +59,11 @@ def search(search_terms, df, df2):
     x=0
 
     for sentence in sentences:
+        new = sentence.translate(str.maketrans('', '', string.punctuation))
+        new_words = new.split()
         found = False
         for term in search_terms:
-            if term in sentence:
+            if term in new_words:
                 if sentence not in matches:
                     matches.append(sentence)
                     found = True
