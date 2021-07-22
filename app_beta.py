@@ -45,7 +45,7 @@ def search(search_terms, df):
     other = []
     matches = []
     for s in sents:
-        out = s.translate(str.maketrans('', '', string.punctuation))
+        out = s.translate(str.maketrans('', '', string.punctuation)).lower()
         words = out.split()
         check = any(item in search_terms for item in words)
         if check==True:
@@ -55,7 +55,7 @@ def search(search_terms, df):
                 total = similar[x].split("|||")
                 for item in total:
                     if item not in matches:
-                        check2 = any(word in item for word in search_terms)
+                        check2 = any(word in item.lower() for word in search_terms)
                         if check2 == False:
                             other.append(item)
 
